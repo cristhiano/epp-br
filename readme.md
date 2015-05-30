@@ -1,4 +1,4 @@
-#####**epp-registro.br** is a ruby epp client for the brazillian(.br) registrar registro.br.
+#####**epp-br** is a ruby epp client for the brazillian(.br) registrar registro.br.
 
 ---
 
@@ -6,7 +6,8 @@
 
 - a simpler interface to the epp-client
 - the brorg(organization) extension required by registro.br
-- allows to mechanize behavior
+- mechanized behavior
+
 ---
 
 ######Early release
