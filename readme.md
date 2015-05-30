@@ -1,4 +1,4 @@
-##epp-registro-br
+##epp-br
 
 **epp-registro.br** is a ruby epp client for the brazillian(.br) registrar registro.br.
 

@@ -1,6 +1,6 @@
 module EPP
-  module RegistroBR
-    class Organization < EPP::RegistroBR::Client
+  module BR
+    class Organization < EPP::BR::Client
       def check ids
         @command = EPP::Contact::Check.new(ids)
         EPP::Contact::CheckResponse.new(super())

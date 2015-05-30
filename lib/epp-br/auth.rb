@@ -1,11 +1,11 @@
 module EPP
-  module RegistroBR
+  module BR
     class Auth
       def initialize
         ssl_context = OpenSSL::SSL::SSLContext.new(:TLSv1)
-        ssl_context.cert = OpenSSL::X509::Certificate.new(File.open('config/epp-registro-br/client.pem'))
-        ssl_context.key = OpenSSL::PKey::RSA.new(File.open('config/epp-registro-br/client.pem'))
-        ssl_context.ca_file = 'config/epp-registro-br/root.pem'
+        ssl_context.cert = OpenSSL::X509::Certificate.new(File.open('config/epp-br/client.pem'))
+        ssl_context.key = OpenSSL::PKey::RSA.new(File.open('config/epp-br/client.pem'))
+        ssl_context.ca_file = 'config/epp-br/root.pem'
         ssl_context.verify_mode = OpenSSL::SSL::VERIFY_PEER
         options = {ssl_context: ssl_context}
 

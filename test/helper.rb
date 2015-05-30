@@ -5,13 +5,13 @@ include WebMock::API
 
 require 'faker'
 
-require 'epp-registro-br'
+require 'epp-br'
 
 require 'minitest/unit'
 
 class MiniTest::Test
   def setup()
-    @client = EPP::RegistroBR::Client.new
+    @client = EPP::BR::Client.new
   end
 
   def teardown()

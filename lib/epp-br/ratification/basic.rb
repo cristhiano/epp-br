@@ -1,9 +1,9 @@
 module EPP
-  module RegistroBR
+  module BR
     module Ratification
       class Basic
         def connect
-          auth = EPP::RegistroBR::Auth.new
+          auth = EPP::BR::Auth.new
           @server = EPP::Server.new(
             auth[:username],
             auth[:password],

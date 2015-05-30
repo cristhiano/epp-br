@@ -1,8 +1,8 @@
 module EPP
-  module RegistroBR
+  module BR
     class Client < EPP::Client
       def initialize
-        auth = EPP::RegistroBR::Auth.new
+        auth = EPP::BR::Auth.new
 
         super(
           auth.username,
@@ -13,11 +13,11 @@ module EPP
       end
 
       def contact
-        EPP::RegistroBR::Contact.new
+        EPP::BR::Contact.new
       end
 
       def organization
-        EPP::RegistroBR::Organization.new
+        EPP::BR::Organization.new
       end
 
       def check

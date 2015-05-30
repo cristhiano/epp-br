@@ -1,18 +1,18 @@
-require File.expand_path('../lib/epp-registro-br/version', __FILE__)
+require File.expand_path('../lib/epp-br/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Cristhiano Figueira"]
   gem.email         = ["crs@uw3.co"]
   gem.description   = %q{Client for communicating with the Nominet EPP}
   gem.summary       = %q{Nominet EPP (Extensible Provisioning Protocol) Client}
-  gem.homepage      = "https://github.com/cristhiano81/epp-registro-br"
+  gem.homepage      = "https://github.com/cristhiano81/epp-br"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "epp-registro-br"
+  gem.name          = "epp-br"
   gem.require_paths = ["lib"]
-  gem.version       = EPP::RegistroBR::VERSION
+  gem.version       = EPP::BR::VERSION
 
   # gem.extra_rdoc_files = %w(LICENSE README.md HISTORY.md)
 
