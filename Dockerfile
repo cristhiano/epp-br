@@ -2,8 +2,6 @@ FROM ruby:2.2-wheezy
 
 WORKDIR /app
 
-COPY . /app
+COPY . .
 
-RUN bundle install
-
-VOLUME /app
+RUN bundle install --path vendor/bundle
