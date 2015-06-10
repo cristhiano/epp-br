@@ -3,13 +3,18 @@ require 'fixtures/contact'
 
 class TestOrganization < MiniTest::Test
   def test_organization_lifecycle
-    @fixture = OrganizationFixture.info
+    # @fixture = OrganizationFixture.info
+
+
+    # Check
+    @check = @client.organization.check '62.892.288/0001-03'
+    assert_equal true, @check.success?, 'Organization check failed'
 
     # Create
-    @create = @client.organization.create 'NONEXISTE', @fixture.clone
-    @id = @create.id
-    assert_instance_of EPP::Contact::CreateResponse, @create, 'Response is not an instance of EPP::Contact::CreateResponse'
-    assert_equal true, @create.success?, 'Organization create failed'
+    # @create = @client.organization.create 'NONEXISTE', @fixture.clone
+    # @id = @create.id
+    # assert_instance_of EPP::Contact::CreateResponse, @create, 'Response is not an instance of EPP::Contact::CreateResponse'
+    # assert_equal true, @create.success?, 'Organization create failed'
 
     # Info
     # @info = @client.contact.info @id
