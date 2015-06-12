@@ -3,7 +3,7 @@ class OrganizationFixture
     Faker::Number.number(6).to_s
   end
 
-  def self.generate
+  def self.info
     organization = {
       :email       => Faker::Internet.email,
       :voice       => "55.1198765432",
@@ -21,12 +21,16 @@ class OrganizationFixture
       :auth_info   => {:pw => Faker::Internet.password},
       :disclose    => {"0" => %w(voice email)},
       :brorg       => {
-        :organization   => "005.506.560/0001-36",
+        :organization   => "61.315.534/0001-00",
         :contact        => "fan",
         :responsible    => "John Doe"
       }
     }
 
     organization
+  end
+
+  def self.multiple_documents
+    ["38.744.244/0001-51", "87.684.781/0001-69", "73.262.412/0001-73"]
   end
 end

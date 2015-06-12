@@ -4,9 +4,7 @@ require 'webmock/minitest'
 include WebMock::API
 
 require 'faker'
-
 require 'epp-br'
-
 require 'minitest/unit'
 
 class MiniTest::Test

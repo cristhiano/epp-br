@@ -1,16 +1,16 @@
 module EPP
   module BR
     class Organization < EPP::BR::Client
-      def check cnpj
-        check = XML::Node.new('check')
+      def check(ids)
+        @extension = XML::Node.new('check')
 
-        check.namespaces.namespace = ns =
-          XML::Namespace.new(check, 'brorg', "urn:ietf:params:xml:ns:brorg-1.0")
+        @extension.namespaces.namespace = ns =
+          XML::Namespace.new(@extension, 'brorg', "urn:ietf:params:xml:ns:brorg-1.0")
 
         id = XML::Node.new('id', 'e123456')
         id.namespaces.namespace = ns
 
-        organization = XML::Node.new('organization', "005.506.560/0001-36")
+        organization = XML::Node.new('organization', ids)
         organization.namespaces.namespace = ns
 
         cd = XML::Node.new('cd')
@@ -19,14 +19,12 @@ module EPP
         cd << id
         cd << organization
 
-        check << cd
+        @extension << cd
 
-        check = EPP::Requests::Extension.new(check)
+        @extension = EPP::Requests::Extension.new(@extension)
 
-        puts check.to_xml
-
-        # @command = EPP::Contact::Check.new(ids)
-        # EPP::Contact::CheckResponse.new(super())
+        @command = EPP::Contact::Check.new(ids)
+        EPP::Contact::CheckResponse.new(super())
       end
 
       def create id, info = {}

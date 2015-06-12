@@ -21,31 +21,31 @@ module EPP
       end
 
       def check
-        @resp = super(@command)
+        @resp = super(@command, @extension)
       end
 
       def create
-        @resp = super(@command)
+        @resp = super(@command, @extension)
       end
 
       def update
-        @resp = super(@command)
+        @resp = super(@command, @extension)
       end
 
       def info
-        @resp = super(@command)
+        @resp = super(@command, @extension)
       end
 
       def transfer
-        @resp = super(@command)
+        @resp = super(@command, @extension)
       end
 
       def delete
-        @resp = super(@command)
+        @resp = super(@command, @extension)
       end
 
       def renew
-        @resp = super(@command)
+        @resp = super(@command, @extension)
       end
     end
   end

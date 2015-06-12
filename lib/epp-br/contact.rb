@@ -4,7 +4,7 @@ module EPP
       # batch
 
       def check ids
-        @command = EPP::Contact::Check.new(ids)
+        @command = EPP::Contact::Check.new(ids, extension = nil)
         EPP::Contact::CheckResponse.new(super())
       end
 
