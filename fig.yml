@@ -1,5 +1,4 @@
 ruby:
   build: .
-  # command: "/bin/bash"
   volumes:
-    - ".:/app"
+    - ".:/epp-br"

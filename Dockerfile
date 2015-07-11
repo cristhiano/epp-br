@@ -1,7 +1,9 @@
-FROM ruby:2.2-wheezy
+FROM ruby:2.2.2-wheezy
 
-WORKDIR /app
+WORKDIR /epp-br
 
 COPY . .
 
-RUN bundle install --path vendor/bundle
+RUN bundle install --jobs 4
+
+CMD ["rake", "test"]
