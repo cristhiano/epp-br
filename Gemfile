@@ -5,7 +5,7 @@ gem 'epp-client'
 
 group :development do
   gem 'guard'
-  gem 'guard-zeus'
+  gem 'guard-minitest'
 end
 
 group :test do
