@@ -1,3 +1,6 @@
+require 'fixtures/contact'
+require 'fixtures/organization'
+
 module EPP
   module BR
     class Homologation
@@ -13,6 +16,15 @@ module EPP
         self.contact_create
         self.contact_info
         self.contact_update
+
+        self.organization_check
+        self.organization_create
+        self.organization_info
+
+        self.domain_check
+        self.domain_create
+        self.domain_info
+        self.domain_update
       end
 
       def connect
@@ -33,8 +45,6 @@ module EPP
       end
 
       def contact_create
-        require 'fixtures/contact'
-
         fixture = ContactFixture.info
         create = @client.contact.create 'NONEXISTE', fixture.clone
         @contact_id = create.id
@@ -49,6 +59,38 @@ module EPP
       def contact_update
         fixture = ContactFixture.change
         self.out @client.contact.update @contact_id, fixture
+      end
+
+      def organization_check
+        fixture = OrganizationFixture.info
+        self.out @client.organization.check fixture.clone[:brorg][:organization]
+      end
+
+      def organization_create
+        fixture = OrganizationFixture.info
+        create = @client.organization.create 'NONEXISTE', fixture.clone
+        @organization_id = create.id
+        self.out create
+      end
+
+      def organization_info
+        self.out @client.organization.info @organization_id
+      end
+
+      def domain_check
+        self.out @client.domain.check 'domainnonexiste.com.br'
+      end
+
+      def domain_create
+
+      end
+
+      def domain_info
+
+      end
+
+      def domain_update
+
       end
 
       def out command

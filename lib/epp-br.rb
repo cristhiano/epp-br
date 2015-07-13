@@ -6,6 +6,7 @@ module EPP
     autoload :Client,       'epp-br/client'
     autoload :Server,       'epp-br/server'
 
+    autoload :Domain,       'epp-br/domain'
     autoload :Contact,      'epp-br/contact'
     autoload :Organization, 'epp-br/organization'
 

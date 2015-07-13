@@ -44,7 +44,7 @@ module EPP
         # @extension = EPP::Requests::Extension.new(@domain_info)
 
 
-        @command = EPP::Contact::Create.new(ids, info)
+        @command = EPP::Contact::Create.new(id, info)
         EPP::Contact::CreateResponse.new(super())
       end
 
