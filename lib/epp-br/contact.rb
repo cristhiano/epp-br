@@ -1,10 +1,11 @@
 module EPP
   module BR
     class Contact < EPP::BR::Client
+
       # batch
 
-      def check ids
-        @command = EPP::Contact::Check.new(ids, extension = nil)
+      def check ids, extension = nil
+        @command = EPP::Contact::Check.new(ids, extension)
         EPP::Contact::CheckResponse.new(super())
       end
 

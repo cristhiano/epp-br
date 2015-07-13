@@ -1,6 +1,7 @@
 module EPP
   module BR
     class Domain < EPP::BR::Client
+      
       # batch
 
       def check ids

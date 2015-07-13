@@ -1,25 +1,29 @@
 module EPP
   module BR
     class Organization < EPP::BR::Client
-      def check(ids)
+      def check *ids
         @extension = XML::Node.new('check')
 
         @extension.namespaces.namespace = ns =
           XML::Namespace.new(@extension, 'brorg', "urn:ietf:params:xml:ns:brorg-1.0")
 
-        id = XML::Node.new('id', 'e123456')
-        id.namespaces.namespace = ns
+        ids = ids.flatten
 
-        organization = XML::Node.new('organization', ids)
-        organization.namespaces.namespace = ns
+        ids.each do |_id|
+          id = XML::Node.new('id', _id)
+          id.namespaces.namespace = ns
 
-        cd = XML::Node.new('cd')
-        cd.namespaces.namespace = ns
+          organization = XML::Node.new('organization', _id)
+          organization.namespaces.namespace = ns
 
-        cd << id
-        cd << organization
+          cd = XML::Node.new('cd')
+          cd.namespaces.namespace = ns
 
-        @extension << cd
+          cd << id
+          cd << organization
+
+          @extension << cd
+        end
 
         @extension = EPP::Requests::Extension.new(@extension)
 
@@ -40,7 +44,7 @@ module EPP
         # @extension = EPP::Requests::Extension.new(@domain_info)
 
 
-        @command = EPP::Contact::Create.new(id, info, @extension)
+        @command = EPP::Contact::Create.new(ids, info)
         EPP::Contact::CreateResponse.new(super())
       end
 

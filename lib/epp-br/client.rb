@@ -12,6 +12,8 @@ module EPP
         )
       end
 
+      # Entities
+
       def contact
         EPP::BR::Contact.new
       end
@@ -20,32 +22,56 @@ module EPP
         EPP::BR::Organization.new
       end
 
-      def check
-        @resp = super(@command, @extension)
+      def domain
+        EPP::BR::Domain.new
       end
+
+      # Commands
+
+      # creator
 
       def create
-        @resp = super(@command, @extension)
+        super(@command, @extension)
       end
 
-      def update
-        @resp = super(@command, @extension)
-      end
+      # info
 
       def info
-        @resp = super(@command, @extension)
+        super(@command, @extension)
+      end
+
+      def poll
+        super()
+      end
+
+      def ack(msgID)
+        super(msgID)
+      end
+
+      # batch info
+
+      def check
+        super(@command, @extension)
+      end
+
+      # mutators
+
+      def update
+        super(@command, @extension)
       end
 
       def transfer
-        @resp = super(@command, @extension)
-      end
-
-      def delete
-        @resp = super(@command, @extension)
+        super(@command, @extension)
       end
 
       def renew
-        @resp = super(@command, @extension)
+        super(@command, @extension)
+      end
+
+      # destructor
+
+      def delete
+        super(@command, @extension)
       end
     end
   end

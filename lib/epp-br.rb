@@ -4,8 +4,11 @@ module EPP
   module BR
     autoload :Auth,         'epp-br/auth'
     autoload :Client,       'epp-br/client'
+    autoload :Server,       'epp-br/server'
 
     autoload :Contact,      'epp-br/contact'
     autoload :Organization, 'epp-br/organization'
+
+    autoload :Homologation, 'epp-br/homologation'
   end
 end

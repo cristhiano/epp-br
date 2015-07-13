@@ -4,7 +4,10 @@ require 'webmock/minitest'
 include WebMock::API
 
 require 'faker'
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'epp-br'
+
 require 'minitest/unit'
 
 class MiniTest::Test
@@ -13,9 +16,9 @@ class MiniTest::Test
   end
 
   def teardown()
-    if @resp && @resp.success? == false
-      puts [@resp.message, @resp.error_reason].join(': ')
-    end
+    # if @resp && @resp.success? == false
+    #   puts [@resp.message, @resp.error_reason].join(': ')
+    # end
   end
 
   # def contact_req_resp(@req, @resp)

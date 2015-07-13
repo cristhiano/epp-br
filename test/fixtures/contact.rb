@@ -12,6 +12,7 @@ class ContactFixture
         :name         => Faker::Name.name,
         :addr         => {
           :street       => "Test Suite\n1 Test Avenue",
+          # :street       => Faker::Address.street_name,
           :city         => "Sao Paulo",
           :sp           => "SP",
           :pc           => "01201-060",
@@ -27,5 +28,19 @@ class ContactFixture
     end
 
     contact
+  end
+
+  def self.change
+    {
+      chg: {
+        postal_info: {
+          addr: {
+            street: "Rua Bar"
+          }
+        },
+        voice: '55.1198765433',
+        email: Faker::Internet.email,
+      }
+    }
   end
 end
