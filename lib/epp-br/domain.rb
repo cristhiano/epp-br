@@ -1,7 +1,7 @@
 module EPP
   module BR
     class Domain < EPP::BR::Client
-      
+
       # batch
 
       def check ids
@@ -30,6 +30,7 @@ module EPP
 
       def create id, info = {}
         @command = EPP::Domain::Create.new(id, info)
+        puts @command.to_xml
         EPP::Domain::CreateResponse.new(super())
       end
 

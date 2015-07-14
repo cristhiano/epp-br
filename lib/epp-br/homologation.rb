@@ -1,3 +1,4 @@
+require 'fixtures/domain'
 require 'fixtures/contact'
 require 'fixtures/organization'
 
@@ -14,17 +15,17 @@ module EPP
         self.hello
 
         self.contact_create
-        self.contact_info
-        self.contact_update
+        # self.contact_info
+        # self.contact_update
 
-        self.organization_check
+        # self.organization_check
         self.organization_create
-        self.organization_info
+        # self.organization_info
 
-        self.domain_check
+        # self.domain_check
         self.domain_create
-        self.domain_info
-        self.domain_update
+        # self.domain_info
+        # self.domain_update
       end
 
       def connect
@@ -48,6 +49,7 @@ module EPP
         fixture = ContactFixture.info
         create = @client.contact.create 'NONEXISTE', fixture.clone
         @contact_id = create.id
+        @contact_pw = fixture[:auth_info][:pw]
 
         self.out create
       end
@@ -69,12 +71,14 @@ module EPP
       def organization_create
         fixture = OrganizationFixture.info
         create = @client.organization.create 'NONEXISTE', fixture.clone
-        @organization_id = create.id
+        @brorg_id = create.id
+        @brorg_pw = fixture[:auth_info][:pw]
+        @brorg_cnpj = fixture[:brorg][:organization]
         self.out create
       end
 
       def organization_info
-        self.out @client.organization.info @organization_id
+        self.out @client.organization.info @brorg_id
       end
 
       def domain_check
@@ -82,7 +86,15 @@ module EPP
       end
 
       def domain_create
-
+        create = @client.domain.create(
+          DomainFixture.name,
+          DomainFixture.info(
+            @brorg_cnpj,
+            @contact_id,
+            @contact_pw
+          )
+        )
+        self.out create
       end
 
       def domain_info
@@ -102,6 +114,7 @@ module EPP
           print "#{entity_name} #{command_name} -> "
         else
           puts "ERROR on #{entity_name} #{command_name}"
+          puts command.to_xml
         end
 
         self.poll_message

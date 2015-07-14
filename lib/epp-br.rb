@@ -1,4 +1,5 @@
 require 'epp-client'
+require 'epp-client/domain'
 
 module EPP
   module BR

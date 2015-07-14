@@ -1,36 +1,26 @@
 class DomainFixture
-  def self.id
-    Faker::Number.number(6).to_s
+  def self.name
+    "#{Faker::Internet.domain_word}.com.br"
   end
 
-  def self.info
-    organization = {
-      :email       => Faker::Internet.email,
-      :voice       => "55.1198765432",
-      :postal_info => {
-        :org          => Faker::Name.name,
-        :name         => Faker::Name.name,
-        :addr         => {
-          :street       => "Test Suite\n1 Test Avenue",
-          :city         => "Sao Paulo",
-          :sp           => "SP",
-          :pc           => "01201-060",
-          :cc           => "BR"
+  def self.info brorg, registrant, pw
+    domain = {
+      brorg: brorg,
+      nameservers: [
+        {
+          name: "ns.#{Faker::Internet.domain_name}",
+          ipv4: Faker::Internet.ip_v6_address
+        },
+        {
+          name: "ns.#{Faker::Internet.domain_name}",
+          ipv4: Faker::Internet.ip_v4_address,
+          ipv6: Faker::Internet.ip_v6_address
         }
-      },
-      :auth_info   => {:pw => Faker::Internet.password},
-      :disclose    => {"0" => %w(voice email)},
-      :brorg       => {
-        :organization   => "61.315.534/0001-00",
-        :contact        => "fan",
-        :responsible    => "John Doe"
-      }
+      ],
+      registrant: registrant,
+      auth_info: {pw: pw}
     }
 
-    organization
-  end
-
-  def self.multiple_documents
-    ["38.744.244/0001-51", "87.684.781/0001-69", "73.262.412/0001-73"]
+    domain
   end
 end

@@ -12,4 +12,5 @@ group :test do
   gem 'minitest'
   gem 'webmock'
   gem 'faker'
+  gem 'cpf_faker'
 end

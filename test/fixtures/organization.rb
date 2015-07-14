@@ -1,3 +1,5 @@
+require 'cpf_faker'
+
 class OrganizationFixture
   def self.id
     Faker::Number.number(6).to_s
@@ -21,7 +23,7 @@ class OrganizationFixture
       :auth_info   => {:pw => Faker::Internet.password},
       :disclose    => {"0" => %w(voice email)},
       :brorg       => {
-        :organization   => "61.315.534/0001-00",
+        :organization   => Faker::CNPJ.pretty,
         :contact        => "fan",
         :responsible    => "John Doe"
       }
