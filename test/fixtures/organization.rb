@@ -5,31 +5,29 @@ class OrganizationFixture
     Faker::Number.number(6).to_s
   end
 
-  def self.info
-    organization = {
-      :email       => Faker::Internet.email,
-      :voice       => "55.1198765432",
-      :postal_info => {
-        :org          => Faker::Name.name,
-        :name         => Faker::Name.name,
-        :addr         => {
-          :street       => "Test Suite\n1 Test Avenue",
-          :city         => "Sao Paulo",
-          :sp           => "SP",
-          :pc           => "01201-060",
-          :cc           => "BR"
+  def self.info custom = {}
+    {
+      email:       Faker::Internet.email,
+      voice:       "55.1198765432",
+      postal_info: {
+        org:          Faker::Name.name,
+        name:         Faker::Name.name,
+        addr:         {
+          street:       "Test Suite\n1 Test Avenue",
+          city:         "Sao Paulo",
+          sp:           "SP",
+          pc:           "01201-060",
+          cc:           "BR"
         }
       },
-      :auth_info   => {:pw => Faker::Internet.password},
-      :disclose    => {"0" => %w(voice email)},
-      :brorg       => {
-        :organization   => Faker::CNPJ.pretty,
-        :contact        => "fan",
-        :responsible    => "John Doe"
+      auth_info:   { pw: Faker::Internet.password},
+      disclose:    { "0" => %w(voice email)},
+      brorg:       {
+        organization:   Faker::CNPJ.pretty,
+        contact:        'John Doe',
+        responsible:    'Himself'
       }
-    }
-
-    organization
+    }.merge! custom
   end
 
   def self.multiple_documents

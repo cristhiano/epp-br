@@ -3,9 +3,9 @@ class DomainFixture
     "#{Faker::Internet.domain_word}.com.br"
   end
 
-  def self.info brorg, registrant, pw
-    domain = {
-      brorg: brorg,
+  def self.info custom = {}
+    {
+      brorg: Faker::CNPJ.pretty,
       nameservers: [
         {
           name: "ns.#{Faker::Internet.domain_name}",
@@ -17,10 +17,10 @@ class DomainFixture
           ipv6: Faker::Internet.ip_v6_address
         }
       ],
-      registrant: registrant,
-      auth_info: {pw: pw}
-    }
-
-    domain
+      registrant: 'registrant',
+      auth_info: {
+        pw: 'pw'
+      }
+    }.merge! custom
   end
 end

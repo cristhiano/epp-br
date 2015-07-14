@@ -32,17 +32,24 @@ module EPP
       end
 
       def create id, info = {}
-        # @extension  = XML::Node.new('brorg')
-        # @extension.namespaces.namespace = ns =
-        #   XML::Namespace.new(@extension, 'create', "urn:ietf:params:xml:ns:brorg-1.0")
-        #
-        # xattr = XML::Attr.new(@extension, "organization", info[:organization])
-        # xattr.namespaces.namespace = XML::Namespace.new(@domain_info, 'xsi', 'http://www.w3.org/2001/XMLSchema-instance')
-        #
-        # @domain_info << XML::Node.new('name', 'example.com', ns)
-        #
-        # @extension = EPP::Requests::Extension.new(@domain_info)
+        @extension = XML::Node.new('create')
+        @extension.namespaces.namespace = ns =
+          XML::Namespace.new(@extension, 'brorg', "urn:ietf:params:xml:ns:brorg-1.0")
 
+        organization = XML::Node.new('organization', info[:brorg][:organization])
+        organization.namespaces.namespace = ns
+        @extension << organization
+
+        contact = XML::Node.new('contact', info[:brorg][:contact])
+        contact.namespaces.namespace = ns
+        contact['type'] = "admin"
+        @extension << contact
+
+        responsible = XML::Node.new('responsible', info[:brorg][:responsible])
+        responsible.namespaces.namespace = ns
+        @extension << responsible
+
+        @extension = EPP::Requests::Extension.new(@extension)
 
         @command = EPP::Contact::Create.new(id, info)
         EPP::Contact::CreateResponse.new(super())
@@ -53,7 +60,17 @@ module EPP
         EPP::Contact::UpdateResponse.new(super())
       end
 
-      def info id
+      def info id, cnpj
+        @extension = XML::Node.new('info')
+        @extension.namespaces.namespace = ns =
+          XML::Namespace.new(@extension, 'brorg', "urn:ietf:params:xml:ns:brorg-1.0")
+
+        organization = XML::Node.new('organization', cnpj)
+        organization.namespaces.namespace = ns
+        @extension << organization
+
+        @extension = EPP::Requests::Extension.new(@extension)
+
         @command = EPP::Contact::Info.new(id)
         EPP::Contact::InfoResponse.new(super())
       end

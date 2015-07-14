@@ -29,8 +29,19 @@ module EPP
       # creator / mutator
 
       def create id, info = {}
+        @extension = XML::Node.new('create')
+
+        @extension.namespaces.namespace = ns =
+          XML::Namespace.new(@extension, 'brdomain', "urn:ietf:params:xml:ns:brdomain-1.0")
+
+        organization = XML::Node.new('organization', info[:brorg])
+        organization.namespaces.namespace = ns
+
+        @extension << organization
+
+        @extension = EPP::Requests::Extension.new(@extension)
+
         @command = EPP::Domain::Create.new(id, info)
-        puts @command.to_xml
         EPP::Domain::CreateResponse.new(super())
       end
 
