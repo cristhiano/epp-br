@@ -18,13 +18,13 @@ module EPP
         # self.contact_info
         # self.contact_update
 
-        self.organization_check
+        # self.organization_check
         self.organization_create
-        self.organization_info
+        # self.organization_info
 
-        self.domain_check
+        # self.domain_check
         self.domain_create
-        # self.domain_info
+        self.domain_info
         # self.domain_update
       end
 
@@ -77,7 +77,7 @@ module EPP
           }
         })
         create = @client.organization.create 'NONEXISTE', fixture.clone
-        puts create.to_xml
+        # puts create.to_xml
         @brorg_id = create.id
         @brorg_pw = fixture[:auth_info][:pw]
         @brorg_cnpj = fixture[:brorg][:organization]
@@ -103,11 +103,17 @@ module EPP
             }
           })
         )
+        # puts create.to_xml
+        @domain_name    = create.name
+        @domain_ticket  = create.ticket
+        puts "Ticket: #{@domain_ticket}"
+
         self.out create
       end
 
       def domain_info
-
+        info = @client.domain.info @domain_name, @domain_ticket
+        self.out info
       end
 
       def domain_update
@@ -119,11 +125,10 @@ module EPP
         entity_name     = constant_names[1]
         command_name    = constant_names[2].gsub(/Response/, '').downcase
 
-        if response.success?
+        if response.success? || response.pending?
           print "#{entity_name} #{command_name} -> "
         else
           puts "ERROR on #{entity_name} #{command_name}"
-          # puts response.to_xml
           puts response.error_value
           puts response.error_reason
         end

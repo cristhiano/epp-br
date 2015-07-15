@@ -37,8 +37,18 @@ module EPP
       # info
 
       def info
+        puts @command.to_xml
+        puts @extension.to_xml
         super(@command, @extension)
       end
+
+      # batch info
+
+      def check
+        super(@command, @extension)
+      end
+
+      # message poll
 
       def poll
         super()
@@ -46,12 +56,6 @@ module EPP
 
       def ack(msgID)
         super(msgID)
-      end
-
-      # batch info
-
-      def check
-        super(@command, @extension)
       end
 
       # mutators
