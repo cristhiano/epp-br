@@ -51,25 +51,23 @@ module EPP
 
       # actions
 
-
-
       def transfer id
         @command = EPP::Domain::Transfer.new(id)
         EPP::Domain::TransferResponse.new(super())
       end
-
-      def delete id
-        @command = EPP::Domain::Delete.new(id)
-        EPP::Domain::DeleteResponse.new(super())
-      end
-
-
 
       # mutator
 
       def update id, info = {}
         @command = EPP::Domain::Update.new(id, info)
         EPP::Domain::UpdateResponse.new(super())
+      end
+
+      # destructor
+
+      def delete id
+        @command = EPP::Domain::Delete.new(id)
+        EPP::Domain::DeleteResponse.new(super())
       end
     end
   end

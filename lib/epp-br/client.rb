@@ -37,8 +37,6 @@ module EPP
       # info
 
       def info
-        puts @command.to_xml
-        puts @extension.to_xml
         super(@command, @extension)
       end
 
@@ -61,6 +59,8 @@ module EPP
       # mutators
 
       def update
+        puts @command.to_xml
+        # puts @extension.to_xml
         super(@command, @extension)
       end
 

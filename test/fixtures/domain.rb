@@ -9,7 +9,7 @@ class DomainFixture
       nameservers: [
         {
           name: "ns.#{Faker::Internet.domain_name}",
-          ipv4: Faker::Internet.ip_v6_address
+          ipv4: Faker::Internet.ip_v4_address
         },
         {
           name: "ns.#{Faker::Internet.domain_name}",
@@ -22,5 +22,16 @@ class DomainFixture
         pw: 'pw'
       }
     }.merge! custom
+  end
+
+  def self.add_rem_ns add, rem
+    {
+      rem: {
+        ns: rem
+      },
+      add: {
+        ns: add
+      }
+    }
   end
 end
