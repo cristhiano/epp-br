@@ -11,6 +11,8 @@ module EPP
       end
 
       def run
+        prepare
+
         self.connect
         self.hello
 
@@ -26,6 +28,10 @@ module EPP
         self.domain_create
         self.domain_info
         self.domain_update
+      end
+
+      def prepare
+
       end
 
       def connect
@@ -80,7 +86,7 @@ module EPP
         })
 
         create = @client.organization.create 'NONEXISTE', fixture.clone
-
+        p create.to_xml
         @brorg_id   = create.id
         @brorg_pw   = fixture[:auth_info][:pw]
         @brorg_cnpj = fixture[:brorg][:organization]

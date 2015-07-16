@@ -80,7 +80,17 @@ module EPP
         EPP::Contact::TransferResponse.new(super())
       end
 
-      def delete id
+      def delete id, cnpj
+        @extension = XML::Node.new('delete')
+        @extension.namespaces.namespace = ns =
+          XML::Namespace.new(@extension, 'brorg', "urn:ietf:params:xml:ns:brorg-1.0")
+
+        organization = XML::Node.new('organization', cnpj)
+        organization.namespaces.namespace = ns
+        @extension << organization
+
+        @extension = EPP::Requests::Extension.new(@extension)
+
         @command = EPP::Contact::Delete.new(id)
         EPP::Contact::DeleteResponse.new(super())
       end
