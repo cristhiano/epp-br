@@ -151,6 +151,42 @@ module EPP
         out update
       end
 
+      def domain_create_again
+
+      end
+
+      def poll
+
+      end
+
+      def poll_ack
+
+      end
+
+      def organization_update
+
+      end
+
+      def organization_info_again
+
+      end
+
+      def domain_info_again
+
+      end
+
+      def domain_renew
+
+      end
+
+      def domain_renewed_update
+
+      end
+
+      def domain_delete
+
+      end
+
       def is_domain_created? name, ticket, minutes = 1
         info = @client.domain.info name, ticket
 
