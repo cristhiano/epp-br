@@ -49,14 +49,12 @@ module EPP
         EPP::Domain::CheckResponse.new(super())
       end
 
-      # actions
+      # mutators
 
       def transfer id
         @command = EPP::Domain::Transfer.new(id)
         EPP::Domain::TransferResponse.new(super())
       end
-
-      # mutator
 
       def update id, info = {}
         @command = EPP::Domain::Update.new(id, info)

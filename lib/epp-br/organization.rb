@@ -87,6 +87,7 @@ module EPP
 
         organization = XML::Node.new('organization', cnpj)
         organization.namespaces.namespace = ns
+        
         @extension << organization
 
         @extension = EPP::Requests::Extension.new(@extension)
