@@ -1,11 +1,10 @@
-class DomainFixture
+class DomainMock
   def self.name
     "#{Faker::Internet.domain_word}.com.br"
   end
 
-  def self.info custom = {}
+  def self.params custom = {}
     {
-      brorg: Faker::CNPJ.pretty,
       nameservers: [
         {
           name: "ns.#{Faker::Internet.domain_name}",
@@ -17,6 +16,7 @@ class DomainFixture
           ipv6: Faker::Internet.ip_v6_address
         }
       ],
+      brorg: Faker::CNPJ.pretty,
       registrant: 'registrant',
       auth_info: {
         pw: 'pw'

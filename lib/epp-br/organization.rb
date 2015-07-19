@@ -10,7 +10,7 @@ module EPP
         ids = ids.flatten
 
         ids.each do |_id|
-          id = XML::Node.new('id', _id)
+          id = XML::Node.new('id', _id.clone.gsub!(/[[:punct:]]/, ''))
           id.namespaces.namespace = ns
 
           organization = XML::Node.new('organization', _id)
@@ -27,7 +27,7 @@ module EPP
 
         @extension = EPP::Requests::Extension.new(@extension)
 
-        @command = EPP::Contact::Check.new(ids)
+        @command = EPP::Contact::Check.new(ids.map{|id| id.gsub!(/[[:punct:]]/, '')})
         EPP::Contact::CheckResponse.new(super())
       end
 
@@ -87,7 +87,7 @@ module EPP
 
         organization = XML::Node.new('organization', cnpj)
         organization.namespaces.namespace = ns
-        
+
         @extension << organization
 
         @extension = EPP::Requests::Extension.new(@extension)

@@ -1,0 +1,12 @@
+epp-br:
+  homologation:
+    contact:  'CGF12'
+    password: 'notabigsecret'
+    document: '13.263.349/0001-68'
+    domains:
+      -
+        name: 'uw3.com.br'
+        dns:
+          -
+            name: 'c.sec.dns.br.'
+            ipv4: '200.189.40.11'

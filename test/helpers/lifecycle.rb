@@ -4,7 +4,7 @@ class Minitest::Test
 
   attr_accessor :entity_name,
                 :entity_class_name,
-                :fixture
+                :mock
 
   def lifecycle
     @entity_class_name = @entity_name.capitalize
@@ -33,7 +33,7 @@ class Minitest::Test
   # Commands
 
   def create
-    create = @client.send(@entity_name).create('NONEXISTE', @fixture.clone)
+    create = @client.send(@entity_name).create('NONEXISTE', @mock.clone)
     @id = create.id
 
     assert_epp_response create
@@ -42,7 +42,7 @@ class Minitest::Test
   def info
     info = @client.contact.info @id
     assert_epp_response info
-    # assert_equal @fixture[:email], info.email
+    # assert_equal @mock[:email], info.email
   end
 
   def poll

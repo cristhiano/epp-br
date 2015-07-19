@@ -1,24 +1,29 @@
+require 'mocks/contact'
+
 module EPP
   module BR
     module Homologation
       class Contact < Base
         def create
-          fixture = ContactFixture.info
-          create = @client.contact.create 'NONEXISTE', fixture.clone
-          @contact_id = create.id
-          @contact_pw = fixture[:auth_info][:pw]
+          id     = ContactMock.id
+          params = ContactMock.params
+
+          create = @@client.contact.create id, params.clone
+
+          @@contact[:id] = create.id
+          @@contact[:pw] = params[:auth_info][:pw]
 
           out create
         end
 
         def info
-          out @client.contact.info @contact_id
+          out @@client.contact.info @@contact[:id]
         end
 
         def update
-          fixture = ContactFixture.change
+          params = ContactMock.change
 
-          out @client.contact.update @contact_id, fixture
+          out @@client.contact.update @@contact[:id], params.clone
         end
       end
     end

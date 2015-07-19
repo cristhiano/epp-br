@@ -6,4 +6,4 @@ COPY . .
 
 RUN bundle install --jobs 4
 
-CMD ["rake", "test"]
+CMD ["guard"]

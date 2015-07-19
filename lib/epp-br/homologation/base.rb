@@ -1,41 +1,57 @@
-require 'fixtures/domain'
-require 'fixtures/contact'
-require 'fixtures/organization'
+require 'mocks/domain'
 
 module EPP
   module BR
     module Homologation
       class Base
-        def initialize
-          @client = EPP::BR::Client.new
-          @server = EPP::BR::Server.new
-        end
+        @@client = EPP::BR::Client.new
+
+        @@contact       = {}
+        @@organization  = {}
+        @@domain_1      = {}
+        @@domain_2      = {}
+
+        config_file = YAML::load_file('config/epp-br/homologation.yml')
+        @@config = config_file['epp-br']['homologation']
 
         def prepare
+          EPP::BR::Homologation::Prepare.new
+        end
 
+        def contact
+          EPP::BR::Homologation::Contact.new
+        end
+
+        def organization
+          EPP::BR::Homologation::Organization.new
+        end
+
+        def domain
+          EPP::BR::Homologation::Domain.new
         end
 
         def run
           prepare
+          
+          connect
+          hello
 
-          self.connect
-          self.hello
+          contact.create
+          contact.info
+          contact.update
 
-          self.contact_create
-          self.contact_info
-          self.contact_update
+          organization.check
+          organization.create
+          organization.info
 
-          self.organization_check
-          self.organization_create
-          self.organization_info
-
-          self.domain_check
-          self.domain_create
-          self.domain_info
-          self.domain_update
+          # self.domain.check
+          # self.domain.create
+          # self.domain.info
+          # self.domain.update
         end
 
         def connect
+          @server = EPP::BR::Server.new
           @server.connection do
             puts "Connected to host"
             print "\n"
@@ -47,7 +63,7 @@ module EPP
         # end
 
         def hello
-          @client.hello
+          @@client.hello
           puts "Hello"
           print "\n"
         end
@@ -56,6 +72,8 @@ module EPP
           constant_names  = response.class.name.split('::')
           entity_name     = constant_names[1]
           command_name    = constant_names[2].gsub(/Response/, '').downcase
+
+          puts response.to_xml
 
           if response.success? || response.pending?
             print "#{entity_name} #{command_name} -> "
@@ -73,11 +91,11 @@ module EPP
         end
 
         def poll_message
-          poll = @client.poll
+          poll = @@client.poll
           puts poll.message
 
           if poll.msgQ
-            @client.ack(poll.msgQ['id'])
+            @@client.ack(poll.msgQ['id'])
             puts "Ackowledged message #{poll.msgQ['id']}"
           end
         end

@@ -10,6 +10,8 @@ module EPP
           auth.host,
           auth.options
         )
+
+        puts @command.to_xml if @command
       end
 
       # Entities
@@ -43,6 +45,8 @@ module EPP
       # batch info
 
       def check
+        puts @command.to_xml
+        puts @extension.to_xml
         super(@command, @extension)
       end
 

@@ -1,11 +1,11 @@
 require 'cpf_faker'
 
-class OrganizationFixture
+class OrganizationMock
   def self.id
     Faker::Number.number(6).to_s
   end
 
-  def self.info custom = {}
+  def self.params document, contact, custom = {}
     {
       email:       Faker::Internet.email,
       voice:       "55.1198765432",
@@ -20,12 +20,12 @@ class OrganizationFixture
           cc:           "BR"
         }
       },
-      auth_info:   { pw: Faker::Internet.password},
+      auth_info:   { pw: Faker::Internet.password },
       disclose:    { "0" => %w(voice email)},
       brorg:       {
-        organization:   Faker::CNPJ.pretty,
-        contact:        'John Doe',
-        responsible:    'Himself'
+        organization:   document,
+        contact:        contact,
+        responsible:    'John Doe'
       }
     }.merge! custom
   end

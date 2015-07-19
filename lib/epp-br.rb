@@ -11,6 +11,13 @@ module EPP
     autoload :Contact,      'epp-br/contact'
     autoload :Organization, 'epp-br/organization'
 
-    autoload :Homologation, 'epp-br/homologation/base'
+    module Homologation
+      autoload :Base,         'epp-br/homologation/base'
+      autoload :Contact,      'epp-br/homologation/contact'
+      autoload :Domain,       'epp-br/homologation/domain'
+      autoload :Organization, 'epp-br/homologation/organization'
+      autoload :Poll,         'epp-br/homologation/poll'
+      autoload :Prepare,      'epp-br/homologation/prepare'
+    end
   end
 end

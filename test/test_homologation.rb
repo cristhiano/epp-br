@@ -2,7 +2,7 @@ require 'helper'
 
 class TestHomologation < Minitest::Test
   def setup
-    @runner = EPP::BR::Homologation.new
+    @runner = EPP::BR::Homologation::Base.new
   end
 
   def test_connect
