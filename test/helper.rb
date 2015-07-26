@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 
 require 'webmock/minitest'
-include WebMock::API
 
 require 'faker'
 

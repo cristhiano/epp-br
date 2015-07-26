@@ -45,9 +45,7 @@ module EPP
       # batch info
 
       def check
-        puts @command.to_xml
-        puts @extension.to_xml
-        super(@command, @extension)
+        super(@command, @extension = nil)
       end
 
       # message poll
