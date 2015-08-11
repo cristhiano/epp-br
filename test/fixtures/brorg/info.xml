@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+<response>
+  <result code="1000">
+    <msg>Command completed successfully</msg>
+  </result>
+  <resData>
+    <contact:infData
+     xmlns:contact="urn:ietf:params:xml:ns:contact-1.0">
+      <contact:id>e654321</contact:id>
+      <contact:roid>e654321-REP</contact:roid>
+      <contact:status s="ok"/>
+      <contact:postalInfo type="int">
+        <contact:name>Example Inc.</contact:name>
+        <contact:addr>
+          <contact:street>
+            Av. Nacoes Unidas, 11541
+          </contact:street>
+          <contact:street>7o. andar</contact:street>
+          <contact:city>Sao Paulo</contact:city>
+          <contact:sp>SP</contact:sp>
+          <contact:pc>04578-000</contact:pc>
+          <contact:cc>BR</contact:cc>
+        </contact:addr>
+      </contact:postalInfo>
+      <contact:voice x="1234">+55.1155093500</contact:voice>
+      <contact:fax>+55.1155093501</contact:fax>
+      <contact:email>jdoe@example.com.br</contact:email>
+      <contact:clID>ClientY</contact:clID>
+      <contact:crID>ClientX</contact:crID>
+      <contact:crDate>2005-12-05T12:00:00.0Z</contact:crDate>
+      <contact:upID>ClientX</contact:upID>
+      <contact:upDate>2005-12-05T12:00:00.0Z</contact:upDate>
+      <contact:disclose flag="0">
+        <contact:voice/>
+        <contact:email/>
+      </contact:disclose>
+    </contact:infData>
+  </resData>
+  <extension>
+    <brorg:infData
+     xmlns:brorg="urn:ietf:params:xml:ns:brorg-1.0">
+     <brorg:organization>
+       005.506.560/0001-36
+     </brorg:organization>
+     <brorg:contact type="admin">fan</brorg:contact>
+     <brorg:responsible>John Doe</brorg:responsible>
+     <brorg:exDate>2006-06-06T06:00:00.0Z</brorg:exDate>
+     <brorg:domainName>antispam.br</brorg:domainName>
+     <brorg:domainName>cert.br</brorg:domainName>
+     <brorg:domainName>dns.br</brorg:domainName>
+     <brorg:domainName>nic.br</brorg:domainName>
+     <brorg:domainName>ptt.br</brorg:domainName>
+     <brorg:domainName>registro.br</brorg:domainName>
+     <brorg:asNumber>64500</brorg:asNumber>
+     <brorg:ipRange version="v4">
+       <brorg:startAddress>192.168.0.0</brorg:startAddress>
+       <brorg:endAddress>192.168.0.255</brorg:endAddress>
+     </brorg:ipRange>
+     <brorg:suspended>true</brorg:suspended>
+    </brorg:infData>
+  </extension>
+  <trID>
+    <clTRID>ABC-12345</clTRID>
+    <svTRID>54322-XYZ</svTRID>
+  </trID>
+</response>
+</epp>
