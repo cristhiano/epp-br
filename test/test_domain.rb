@@ -3,13 +3,13 @@ require 'helpers/lifecycle'
 require 'mocks/domain'
 
 class TestDomain < Minitest::Test
-  def test_domain_check
-    domain_name = DomainMock.name
-
-    check = @client.domain.check domain_name
-
-    assert check.available?
-  end
+  # def test_domain_check
+  #   domain_name = DomainMock.name
+  #
+  #   check = @client.domain.check domain_name
+  #
+  #   assert check.available?
+  # end
   # def test_contact_lifecycle
   #   self.entity_name = 'contact'
   #   self.mock = ContactMock.params
