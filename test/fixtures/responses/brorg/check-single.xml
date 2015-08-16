@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+<response>
+  <result code="1000">
+    <msg>Command completed successfully</msg>
+  </result>
+  <resData>
+    <contact:chkData
+     xmlns:contact="urn:ietf:params:xml:ns:contact-1.0">
+      <contact:cd>
+        <contact:id avail="0">e12345</contact:id>
+      </contact:cd>
+    </contact:chkData>
+  </resData>
+  <extension>
+    <brorg:chkData
+     xmlns:brorg="urn:ietf:params:xml:ns:brorg-1.0">
+     <brorg:ticketInfo>
+      <brorg:organization>
+        005.506.560/0001-36
+      </brorg:organization>
+      <brorg:ticketNumber>1234</brorg:ticketNumber>
+      <brorg:domainName>exemplo.com.br</brorg:domainName>
+     </brorg:ticketInfo>
+    </brorg:chkData>
+  </extension>
+  <trID>
+    <clTRID>ABC-12345</clTRID>
+    <svTRID>54322-XYZ</svTRID>
+  </trID>
+</response>
+</epp>

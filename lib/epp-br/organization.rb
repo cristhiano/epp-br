@@ -1,6 +1,10 @@
 module EPP
   module BR
     class Organization < EPP::BR::Client
+      attr_accessor :command,
+                    :extension,
+                    :response
+
       def check *ids
         @extension = XML::Node.new('check')
 
@@ -28,7 +32,8 @@ module EPP
         @extension = EPP::Requests::Extension.new(@extension)
 
         @command = EPP::Contact::Check.new(ids.map{|id| id.gsub!(/[[:punct:]]/, '')})
-        EPP::Contact::CheckResponse.new(super())
+        @response = EPP::Contact::CheckResponse.new(super())
+        @response
       end
 
       def create id, info = {}

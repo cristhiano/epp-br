@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+ <response>
+  <result code="1000">
+   <msg>Command completed successfully</msg>
+  </result>
+  <resData>
+   <contact:creData
+     xmlns:contact="urn:ietf:params:xml:ns:contact-1.0">
+    <contact:id>e123456</contact:id>
+    <contact:crDate>2005-12-05T12:00:00.0Z</contact:crDate>
+   </contact:creData>
+  </resData>
+  <extension>
+   <brorg:creData xmlns:brorg="urn:ietf:params:xml:ns:brorg-1.0">
+    <brorg:organization>005.506.560/0001-36</brorg:organization>
+   </brorg:creData>
+  </extension>
+  <trID>
+   <clTRID>ABC-12345</clTRID>
+   <svTRID>54321-XYZ</svTRID>
+  </trID>
+ </response>
+</epp>

@@ -11,7 +11,7 @@ require 'minitest/unit'
 
 class MiniTest::Test
   def setup()
-    @client = EPP::BR::Client.new
+    @client = EPP::BR::Client.new 'test'
   end
 
   def teardown()

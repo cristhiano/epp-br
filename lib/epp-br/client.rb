@@ -1,17 +1,19 @@
 module EPP
   module BR
     class Client < EPP::Client
-      def initialize
-        auth = EPP::BR::Auth.new
+      def initialize env = 'production'
+        if env == 'production'
+          auth = EPP::BR::Auth.new
 
-        super(
-          auth.username,
-          auth.password,
-          auth.host,
-          auth.options
-        )
-
-        puts @command.to_xml if @command
+          super(
+            auth.username,
+            auth.password,
+            auth.host,
+            auth.options
+          )
+        else
+          super('user', 'password', 'test.host.epp')
+        end
       end
 
       # Entities
