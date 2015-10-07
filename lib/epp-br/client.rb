@@ -2,7 +2,7 @@ module EPP
   module BR
     class Client < EPP::Client
       def initialize env = 'production'
-        if env == 'production'
+        # if env == 'production'
           auth = EPP::BR::Auth.new
 
           super(
@@ -11,26 +11,32 @@ module EPP
             auth.host,
             auth.options
           )
-        else
-          super('user', 'password', 'test.host.epp')
-        end
+        # else
+        #   super('user', 'password', 'test.host.epp')
+        # end
       end
 
       # Entities
+
+      def brorg
+        EPP::BR::Org.new(self)
+      end
 
       def contact
         EPP::BR::Contact.new
       end
 
-      def organization
-        EPP::BR::Organization.new
-      end
-
-      def domain
+      def brdomain
         EPP::BR::Domain.new
       end
 
       # Commands
+
+      # check
+
+      def check(command, extension = nil)
+        super(command, extension)
+      end
 
       # creator
 
@@ -42,12 +48,6 @@ module EPP
 
       def info
         super(@command, @extension)
-      end
-
-      # batch info
-
-      def check
-        super(@command, @extension = nil)
       end
 
       # message poll

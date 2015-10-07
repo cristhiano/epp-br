@@ -11,6 +11,12 @@ module EPP
     autoload :Contact,      'epp-br/contact'
     autoload :Organization, 'epp-br/organization'
 
+    autoload :Org,          'epp-br/brorg'
+
+    class Org
+      autoload :CheckResponse, 'epp-br/brorg/check_response'
+    end
+
     module Homologation
       autoload :Base,         'epp-br/homologation/base'
       autoload :Contact,      'epp-br/homologation/contact'

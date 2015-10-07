@@ -32,4 +32,19 @@ class MiniTest::Test
   #
   #
   # end
+
+  def load_schema(name)
+    xsd_path = File.expand_path("../support/schemas/#{name}.xsd", __FILE__)
+    xsd_doc  = XML::Document.file(xsd_path)
+    XML::Schema.document(xsd_doc)
+  end
+
+  def load_xml(name)
+    xml_path = File.expand_path("../fixtures/responses/#{name}.xml", __FILE__)
+    File.read(xml_path)
+  end
+
+  def schema name
+    @schema ||= load_schema(name)
+  end
 end

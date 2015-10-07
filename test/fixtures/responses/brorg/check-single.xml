@@ -15,13 +15,13 @@
   <extension>
     <brorg:chkData
      xmlns:brorg="urn:ietf:params:xml:ns:brorg-1.0">
-     <brorg:ticketInfo>
-      <brorg:organization>
-        005.506.560/0001-36
-      </brorg:organization>
-      <brorg:ticketNumber>1234</brorg:ticketNumber>
-      <brorg:domainName>exemplo.com.br</brorg:domainName>
-     </brorg:ticketInfo>
+      <brorg:ticketInfo>
+        <brorg:organization>
+          005.506.560/0001-36
+        </brorg:organization>
+        <brorg:ticketNumber>1234</brorg:ticketNumber>
+        <brorg:domainName>exemplo.com.br</brorg:domainName>
+      </brorg:ticketInfo>
     </brorg:chkData>
   </extension>
   <trID>
